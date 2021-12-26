@@ -1,4 +1,17 @@
 {
+  "name": "tech-blog-1",
+  "version": "1.0.0",
+  "description": "Tech Blog for coders",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmokbel1/Tech-Blog.git"
+  },
+  "homepage": "https://github.com/cmokbel1/Tech-Blog#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
