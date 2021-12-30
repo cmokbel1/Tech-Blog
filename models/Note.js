@@ -1,13 +1,14 @@
-const pls = require('passport-local-sequelize')
+
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
 
 
-const Comment = pls.defineComment(sequelize, {
+class Note extends Model { }
+Note.init(
   body: {
     type: DataTypes.STRING,
     allowNull: false
   }
-})
+}, { sequelize, modelName: 'note' })
 
-module.exports = Comment
+module.exports = Note

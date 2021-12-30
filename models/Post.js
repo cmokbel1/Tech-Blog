@@ -3,7 +3,8 @@ const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
 
 
-const Post = pls.definePost(sequelize, {
+class Post extends Model { }
+Post.init({
   title: {
     type: DataTypes.STRING,
     allowNull: false
@@ -12,6 +13,6 @@ const Post = pls.definePost(sequelize, {
     type: DataTypes.STRING,
     allowNull: false
   }
-})
+}, { sequelize, modelName: 'post' })
 
 module.exports = Post
