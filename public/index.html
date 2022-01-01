@@ -113,6 +113,12 @@
         location ='/post.html'
       }
     })
+
+    async function logOut() {
+      localStorage.removeItem('username')
+      localStorage.removeItem('token')
+      location = '/index.html'
+    }
   </script>
 </body>
 
