@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post</title>
+</head>
+<body>
+ <div id="myPost"></div>
+ <div id="comments"></div> 
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  let postId = localStorage.getItem('postId')
+  axios.get(`/api/posts/${postId}`, {
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  })
+  .then (res => {
+    console.log(res)
+    let post = res.data
+    let postElem = document.createElement('div')
+    postElem.innerHTML = `
+    <h1> ${post.title} </h1>
+    <h3> ${post.body} </h3>
+    `
+    document.getElementById('myPost').prepend(postElem)
+
+    post.notes.forEach(note => {
+      console.log(note)
+
+      let noteElem = document.createElement('div')
+      noteElem.innerHTML = `
+      ${note.body}
+      `
+      document.getElementById('comments').append(noteElem)
+    })
+  })
+</script>
+</body>
+</html>

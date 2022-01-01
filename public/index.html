@@ -48,6 +48,19 @@
       system un-hackable.
     </div>
   </div>
+  <div class="row">
+    <form>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title">
+      </div>
+      <div class="mb-3">
+        <label for="body" class="form-label">Body</label>
+        <textarea class="form-control" name="body" id="body" cols="30" rows="10"></textarea>
+      </div>
+      <button id="post" type="submit" class="btn btn-primary">Create Post</button>
+    </form>
+  </div>
   <div id="postContainer" class="container"></div>
 
 
@@ -56,7 +69,52 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script>
+    function createPost() {
+      let newPost = {
+        title: document.getElementById('title').value,
+        body: document.getElementById('body').value
+      }
+      axios.post('/api/posts', newPost, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      .then(res => {
+        console.log(res)
+      })
+    }
 
+    document.getElementById('post').addEventListener('click', event => {
+      event.preventDefault()
+      createPost()
+    })
+
+    axios.get('/api/posts', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(res => {
+      console.log(res.data)
+      let posts = res.data
+      posts.forEach(post => {
+        let postElem = document.createElement('div')
+        postElem.innerHTML = `
+        <h3 class = "posted" data-postid = "${post.id}"> ${post.title} </h3>
+        <h5> posted by ${post.User.username}</h5>
+        <p> ${post.body}</p>
+        `
+        document.getElemenyById('posts').prepend(postElem)
+      })
+    })
+
+    document.addEventListener('click', event => {
+      if(event.target.classList.contains('posted')) {
+        console.log('ping')
+        localStorage.setItem('postId', event.target.dataset.postid)
+        location ='/post.html'
+      }
+    })
   </script>
 </body>
 
