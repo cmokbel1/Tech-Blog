@@ -14,17 +14,23 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="./index.html">Blog-About-IT</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="#">Blog about IT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
-          <a class="nav-link" href="./signUp.html">Sign Up</a>
-          <a class="nav-link" href="./signIn.html">Sign In</a>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./profile.html">Dashboard</a>
+          </li>
+        </ul>
+        <a class="navbar-text" href="signIn.html">
+          Sign In
+        </a>
       </div>
     </div>
   </nav>
@@ -40,16 +46,16 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
               </div>
-              <input type="text" class="form-control" placeholder="Username">
+              <input type="text" class="form-control" placeholder="Username" id="rUsername">
             </div>
             <div class="input-group form-group" style="padding-bottom: 5px;">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
               </div>
-              <input type="password" class="form-control" placeholder="Password">
+              <input type="password" class="form-control" placeholder="Password" id="rPassword">
             </div>
             <div class="form-group">
-              <input type="submit" value="Sign Up" class="btn float-right login_btn">
+              <input type="submit" value="Sign Up" class="btn float-right login_btn" id="register">
             </div>
           </form>
         </div>
@@ -67,7 +73,28 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script>
+    async function registerUser(user) {
+      try {
+        await axios.post('/api/users/register', user)
+        return true
+      } catch (err) {
+        alert('Invalid Information. Try Again.')
+      }
+    }
 
+    document.getElementById('register').addEventListener('click', async function (event) {
+      event.preventDefault()
+
+      const isMade = await registerUser({
+        username: document.getElementById('rUsername').value,
+        password: document.getElementById('rPassword').value
+      })
+      if (isMade) {
+        alert('Account Created!')
+      } else {
+        alert('Something Went Wrong, Try Again.')
+      }
+    })
   </script>
 </body>
 

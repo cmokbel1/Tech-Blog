@@ -7,7 +7,7 @@ const { join } = require('path')
 // defining passport path
 const passport = require('passport')
 // defining the required models for functionality
-const { User, Post } = require('./models')
+const { User, Post, Note } = require('./models')
 
 const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 
@@ -35,7 +35,7 @@ passport.use(new JWTStrategy({
   secretOrKey: process.env.SECRET
 }, async function ({ id }, cb) {
   try {
-    const user = await User.findOne({ where: { id }, include: [Post] })
+    const user = await User.findOne({ where: { id }, include: [Post, Note] })
     cb(null, user)
   } catch (err) {
     cb(err, null)
@@ -45,7 +45,7 @@ passport.use(new JWTStrategy({
 app.use(require('./routes'))
 
 async function init() {
-  await require('./db').sync()
+  await require('./db').sync({force: true})
   app.listen(process.env.PORT || 3000)
 }
 
