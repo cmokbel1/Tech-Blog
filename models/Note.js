@@ -4,7 +4,7 @@ const sequelize = require('../db')
 
 
 class Note extends Model { }
-Note.init(
+Note.init({
   body: {
     type: DataTypes.STRING,
     allowNull: false
