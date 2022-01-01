@@ -7,10 +7,6 @@ const User = pls.defineUser(sequelize, {
     type: DataTypes.STRING,
     allowNull: false
   },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
 })
 
 module.exports = User
