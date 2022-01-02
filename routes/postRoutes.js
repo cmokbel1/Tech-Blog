@@ -21,7 +21,7 @@ router.post('/posts', passport.authenticate('jwt'), async function(req, res) {
     title: req.body.title,
     uid: req.user.id
   })
-  res.json(posts)
+  res.json(post)
 })
 
 //delete a post

@@ -3,6 +3,8 @@ require('dotenv').config()
 
 const express = require('express')
 const { join } = require('path')
+const session = require('express-session')
+
 
 // defining passport path
 const passport = require('passport')
@@ -12,6 +14,14 @@ const { User, Post, Note } = require('./models')
 const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 
 const app = express()
+
+// express-session
+app.use(session({
+  secret: process.env.SECRET, maxAge: 60 * 60 * 1000, resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: 60 * 30 * 1000 }
+}));
+
 // linking the front end to the back end
 app.use(express.static(join(__dirname, 'public')))
 
@@ -45,7 +55,7 @@ passport.use(new JWTStrategy({
 app.use(require('./routes'))
 
 async function init() {
-  await require('./db').sync({force: true})
+  await require('./db').sync()
   app.listen(process.env.PORT || 3000)
 }
 
