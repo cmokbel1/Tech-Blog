@@ -35,11 +35,12 @@
     </div>
   </nav>
     <div class="container">
-      <div class="row bg-dark p-5 rounded-lg mb-3 mt-3">
+      <div class="row bg-primary p-5 rounded-lg mb-3 mt-3">
         <h1 class="display-4">Blog About IT</h1>
-        <p class="lead">The Premier IT Blog</p>
+        <h3 class="lead">The Premier IT Blog</h3>
         <hr class="my-4">
-        <p class="lead">Here are your posts <span id="username"></span>!</p>
+        <h4 class="lead">Here are your posts <span id="username"></span>!</h4>
+    </div>
   <div id="posts">
 
   </div>
@@ -76,10 +77,10 @@
     async function renderPost({ title, body }) {
       const postElem = document.createElement('div')
       postElem.innerHTML = `
-      <div class ="row bg-dark p-5 rounded-md mb-2 mt-2">
+      <div class ="row bg-primary p-5 rounded-md mb-2 mt-2">
         <h3>${title}</h3>
-        <p class="lead">${body}</p>
         <hr class="my-4">
+        <p class="lead">${body}</p>
       </div>
       `
       document.getElementById('posts').prepend(postElem)
