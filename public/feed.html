@@ -104,8 +104,20 @@
         <p> ${post.body}</p>
         `
           document.getElementById('postContainer').prepend(postElem)
+
+          post.notes.forEach(note => {
+            console.log(note)
+
+            let noteElem = document.createElement('div')
+            noteElem.innerHTML = `
+             ${note.body}
+             `
+            postElem.append(noteElem)
+          })
         })
+
       })
+
 
     document.addEventListener('click', event => {
       if (event.target.classList.contains('posted')) {
