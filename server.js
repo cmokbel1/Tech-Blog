@@ -5,6 +5,7 @@ const express = require('express')
 const { join } = require('path')
 const session = require('express-session')
 
+const hbs = require('express-handlebars').engine()
 
 // defining passport path
 const passport = require('passport')
@@ -32,6 +33,11 @@ app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.engine('handlebars', hbs)
+app.set('view engine', 'handlebars')
+app.set('views', './views')
+
+
 // user authenticator
 passport.use(User.createStrategy())
 
@@ -52,7 +58,7 @@ passport.use(new JWTStrategy({
   }
 }))
 
-app.use(require('./controllers/api'))
+app.use(require('./controllers'))
 
 async function init() {
   await require('./db').sync()
