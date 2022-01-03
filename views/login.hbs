@@ -1,0 +1,55 @@
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="username" class="form-label">username:</label>
+            <input type="text" name="lUsername" id="lUsername" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">username:</label>
+            <input type="password" name="lUsername" id="lPassword" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="login" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  async function loginUser(user) {
+      try {
+        const { data } = await axios.post('/api/users/login', user)
+        return data
+      } catch (err) {
+        alert('Something Went Wrong. Please Try Again')
+      }
+    }
+
+    document.getElementById('login').addEventListener('click', async function (event) {
+      event.preventDefault()
+
+      const { username, token } = await loginUser({
+        username: document.getElementById('lUsername').value,
+        password: document.getElementById('lPassword').value
+      })
+
+      if (token) {
+        localStorage.setItem('username', username)
+        localStorage.setItem('token', token)
+        location = '/dashboard'
+      } else {
+        alert('Invalid Username or Password. Please Try Again.')
+      }
+    })
+</script>

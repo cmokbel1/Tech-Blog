@@ -1,0 +1,10 @@
+<h1>Dashboard</h1>
+<p>Hello, {{username}} </p>
+<a href="/newpost">Blog About IT</a>
+<p>View your post history</p>
+
+<h4>{{username}}'s Posts</h4>
+<ul>
+{{#each posts}}
+<li>{{title}}<a href="./editpost/{{title}}">edit</a></li>
+</ul>

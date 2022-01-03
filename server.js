@@ -23,7 +23,7 @@ app.use(session({
 }));
 
 // linking the front end to the back end
-app.use(express.static(join(__dirname, 'public')))
+// app.use(express.static(join(__dirname, 'public')))
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -52,7 +52,7 @@ passport.use(new JWTStrategy({
   }
 }))
 
-app.use(require('./routes'))
+app.use(require('./controllers/api'))
 
 async function init() {
   await require('./db').sync()
