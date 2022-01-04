@@ -35,7 +35,7 @@ app.use(express.json())
 
 app.engine('handlebars', hbs)
 app.set('view engine', 'handlebars')
-app.set('views', '/views')
+app.set('views', './views')
 
 
 // user authenticator

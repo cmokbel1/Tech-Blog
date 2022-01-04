@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const JwtStrategy = require('passport-jwt/lib/strategy')
-const { User, Post, Comment } = require('../models')
+const { User, Post, Note } = require('../models')
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const helpers = require('../helpers')
