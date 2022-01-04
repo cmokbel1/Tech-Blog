@@ -25,13 +25,13 @@ app.use(session({
 
 // linking the front end to the back end
 // app.use(express.static(join(__dirname, 'public')))
-
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-
 //express uses passport and initializes / calls into session
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
+
 
 app.engine('handlebars', hbs)
 app.set('view engine', 'handlebars')

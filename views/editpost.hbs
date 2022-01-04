@@ -1,0 +1,55 @@
+<h1>Editor</h1>
+<form>
+<div class="mb-3">
+  <label for="title" class="form-label">Title:</label>
+  <input type="text" name="title" id="title" value="{{post.title}}">
+</div>
+<div class="mb-3">
+  <textarea name="body" id="body"class="form-control">{{post.body}}</textarea>
+</div>
+<button class="btn brn-primary" id="submit">Submit</button>
+<button class="btn btn-danger" id="delete">Delete</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+  document.getElementById('submit').addEventListener('click', event => {
+    event.preventDefault()
+
+    let data = {
+      title: document.getElementById('title').value,
+      body: document.getElementById('body').value
+    }
+
+    let headers = {
+      'Authorization': `Bearer ${localStorage.token}`
+    }
+
+    axios.put('/api/post/{{post.id}}', data, {headers: headers})
+    .then(res => {
+      console.log('edit success')
+      location = `/post/{{post.id}}`;
+    })
+    .catch(err) {
+      console.log(err)
+    }
+  })
+
+  document.getElementById('delete').addEventListener('click', event => {
+    event.preventDefault()
+
+        let headers = {
+      'Authorization': `Bearer ${localStorage.token}`
+    }
+    
+    axios.delete('/api/post/{{post.id}}', {headers: headers})
+    .then(res => {
+      alert('This post has been deleted')
+      location ='/'
+    })
+    .catch (err) {
+      console.log(err)
+    }
+  })
+</script>
