@@ -5,25 +5,25 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const helpers = require('../helpers')
 
-router.get('/', async (req,res) => {
-    let data = {
-      isLoggedIn: req.session.loggedIn ? true : false,
-      username: req.session.loggedIn ? req.session.username : "ERROR"
-    }
+router.get('/', async (req, res) => {
+  let data = {
+    isLoggedIn: req.session.loggedIn ? true : false,
+    username: req.session.loggedIn ? req.session.username : "ERROR"
+  }
 
-    let posts = await Post.findAll({
-      raw:true,
-      include: [{model: User, atrributes: ['username']}],
-      order: [['createdAt', 'DESC']]
-    })
+  let posts = await Post.findAll({
+    raw: true,
+    include: [{ model: User, atrributes: ['username'] }],
+    order: [['createdAt', 'DESC']]
+  })
 
-    console.log(posts)
-    data.posts = posts
-    res.render('index', data);
+  console.log(posts)
+  data.posts = posts
+  res.render('index', data);
 
 })
 
-router.get('/login', (req,res) => {
+router.get('/login', (req, res) => {
   if (req.sessions.loggedIn) {
     res.redirect('/dashboard');
     return;
@@ -33,11 +33,11 @@ router.get('/login', (req,res) => {
       isLoggedIn: req.session.loggedIn ? true : false,
       username: req.session.loggedIn ? req.session.username : "ERROR"
     }
-  res.render('login', data)
+    res.render('login', data)
   }
 })
 
-router.get('/register', async (req,res) => {
+router.get('/register', async (req, res) => {
   const data = {
     isLoggedIn: req.session.loggedIn ? true : false,
     username: req.session.loggedIn ? req.session.username : "ERROR"
@@ -45,7 +45,7 @@ router.get('/register', async (req,res) => {
   res.render('register')
 })
 
-router.get('/dashboard', async (req,res) => {
+router.get('/dashboard', async (req, res) => {
   let data = {
     isLoggedIn: req.session.loggedIn ? true : false,
     username: req.session.loggedIn ? req.session.username : "ERROR"
@@ -59,3 +59,63 @@ router.get('/dashboard', async (req,res) => {
   data.posts = posts
   res.render('dashboard', data)
 })
+
+router.get('/newpost', helpers.isLoggedIn, (req, res) => {
+  let data = {
+    isLoggedIn: req.session.loggedIn ? true : false,
+    username: req.session.loggedIn ? req.session.username : "ERROR"
+  }
+
+  res.render('newpost', data);
+})
+
+
+router.get('/editpost/:id', helpers.isLoggedIn, async (req, res) => {
+  let data = {
+    isLoggedIn: req.session.loggedIn ? true : false,
+    username: req.session.loggedIn ? req.session.username : "ERROR"
+  }
+
+  let post = await Post.findOne({
+    raw: true,
+    where: { id: req.params.id }
+  })
+
+  data.post = post
+  res.render('editpost', data)
+})
+
+router.get('/post/:id', async (req, res) => {
+  let data = {
+    isLoggedIn: req.session.loggedIn ? true : false,
+    username: req.session.loggedIn ? req.session.username : "ERROR"
+  }
+
+  let post = await Post.findOne({
+    raw:true,
+    include: [{model: User, attributes: ['username']}],
+    where: {id: req.params.id}
+  })
+  data.post = post
+
+  let notes = Note.findAll({
+    raw: true,
+    where: { uid: req.params.id }
+  })
+  data.notes = notes
+  res.render('post', data)
+})
+
+router.get('/logout', async (req,res) => {
+  if (req.session.loggedIn) {
+    console.log('Getting out of here!')
+    req.session.destroy(() => {
+      res.sender('logout')
+    })
+  } else {
+    console.log('Not logged in')
+    res.redirect('/')
+  }
+})
+
+module.exports = router
