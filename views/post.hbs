@@ -1,0 +1,59 @@
+{{!-- creating card for post title and body --}}
+{{#with post}}
+<div class="card mb-3">
+  <div class="card-header">
+    <h1>{{title}}</h1>
+    <h4>Posted by {{'User.username'}} at {{createdAt}}</h4>
+  </div>
+  <div class="card-body">
+    <p>{{body}}</p>
+  </div>
+</div>
+{{/with}}
+{{!-- if user is logged in --}}
+{{#if isLoggedIn}}
+<form>
+  <div class="mb-3">
+    <label for="comment" class="form-label">Leave a Comment</label>
+    <textarea name="comment" id="comment"></textarea>
+  </div>
+  <button class="btn btn-primary" id="makeComment">Comment</button>
+</form>
+ {{!-- if they aren't logged in --}}
+{{else}}
+<p>Please login to leave a comment</p>
+{{/if}}
+
+{{!-- comment section --}}
+<h3>Comments</h3>
+<ul class="list-group">
+  {{#each notes}}
+  <li class="list-group-item">
+    <div class="ms-2 me auto">
+      <div class="fw">{{body}}</div>
+      Posted by {{username}} at {{createdAt}}
+    </div>
+  </li>
+  {{/each}}
+</ul>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.getElementById('makeComment').addEventListener('click', event => {
+    event.preventDefault();
+
+    let data = {
+      body: document.getElementById('comment').value,
+    }
+
+    let headers = {
+      'Authorization': `Bearer ${localStorage.token}`
+    }
+
+    axios.post('/api/note/{{post.id}}', data, {heades: headers}).then(res => {
+      location = '/post/{{post.id}}';
+    }).catch(err) {
+      console.log(err)
+    }
+  })
+</script>
