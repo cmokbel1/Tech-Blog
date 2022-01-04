@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const helpers = require('../helpers')
 
-router.get('/' async (req,res) => {
+router.get('/', async (req,res) => {
     let data = {
       isLoggedIn: req.session.loggedIn ? true : false,
       username: req.session.loggedIn ? req.session.username : "ERROR"
@@ -35,7 +35,7 @@ router.get('/login', (req,res) => {
     }
   res.render('login', data)
   }
-}
+})
 
 router.get('/register', async (req,res) => {
   const data = {
