@@ -29,15 +29,18 @@
           </li>
         </ul>
         <a class="navbar-text">
-          {{!-- IF LOGGED IN [logged in as --- [ <a hred="/logout"></a>sign out button] --}}
-          {{!-- ELSE SIGN IN --}}
+          {{#if isLoggedIn}}
+          Logged in as {{username}} - <a href="/logout">Logout</a>
+          {{else}}
+          <a href="/login">Sign In</a>
+          {{/if}}
         </a>
       </div>
     </div>
   </nav>
 
 
-  <main>
+  <main class = "container">
   {{{ body }}}
   </main>
 
