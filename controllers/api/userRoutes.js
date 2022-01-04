@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User, Post, Note } = require('../models')
+const { User, Post, Note } = require('../../models')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const { redirect } = require('express/lib/response')

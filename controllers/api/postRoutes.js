@@ -15,7 +15,7 @@ const passport = require('passport')
 // })
 
 //post one post
-router.post('/', passport.authenticate('jwt'), async function(req, res) => {
+router.post('/', passport.authenticate('jwt'), async function(req, res)  {
   const post = await Post.create({
     body: req.body.body,
     title: req.body.title,
@@ -25,7 +25,7 @@ router.post('/', passport.authenticate('jwt'), async function(req, res) => {
 })
 
 ///edit a ppost n shit
-router.put('/:id', passport.authenticate('jwt'), async function(req, res) => {
+router.put('/:id', passport.authenticate('jwt'), async function(req, res)  {
   const post = await Post.update({
     body: req.body.body,
     title: req.body.title},
@@ -34,7 +34,7 @@ router.put('/:id', passport.authenticate('jwt'), async function(req, res) => {
   })
 
 //delete a post or comment
-router.delete('/:id', passport.authenticate('jwt'), async function (req, res) => {
+router.delete('/:id', passport.authenticate('jwt'), async function (req, res)  {
   let post = await Post.destroy({ where: {id: req.params.id, uid: req.session.userId } })
 
   if(post > 0) {
