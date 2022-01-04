@@ -4,7 +4,7 @@ require('dotenv').config()
 const express = require('express')
 const { join } = require('path')
 const session = require('express-session')
-
+const path = require("path")
 const hbs = require('express-handlebars').engine()
 
 // defining passport path
@@ -23,8 +23,8 @@ app.use(session({
   cookie: { secure: false, maxAge: 60 * 30 * 1000 }
 }));
 
-// linking the front end to the back end
-// app.use(express.static(join(__dirname, 'public')))
+//linking the front end to the back end
+app.use(express.static(join(__dirname, 'public')))
 //express uses passport and initializes / calls into session
 app.use(passport.initialize())
 app.use(passport.session())
@@ -35,7 +35,7 @@ app.use(express.json())
 
 app.engine('handlebars', hbs)
 app.set('view engine', 'handlebars')
-app.set('views', './views')
+app.set('views', '/views')
 
 
 // user authenticator
