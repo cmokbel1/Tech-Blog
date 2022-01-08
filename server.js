@@ -48,7 +48,7 @@ passport.deserializeUser(User.deserializeUser())
 // authentication
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.SECRET
+  secretOrKey: process.env.SESSION_SECRET
 }, async function ({ id }, cb) {
   try {
     const user = await User.findOne({ where: { id }, include: [Post, Note] })
