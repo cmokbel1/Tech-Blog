@@ -18,7 +18,7 @@ const app = express()
 
 // express-session
 app.use(session({
-  secret: process.env.SESSION_SECRET, maxAge: 60 * 60 * 1000, resave: false,
+  secret: process.env.SECRET, maxAge: 60 * 60 * 1000, resave: false,
   saveUninitialized: true,
   cookie: { secure: false, maxAge: 60 * 30 * 1000 }
 }));
