@@ -1,4 +1,4 @@
-const User = require('./User.js')
+const User = require('./User')
 const Post = require('./Post.js')
 const Note = require('./Note.js')
 
