@@ -18,7 +18,7 @@ const app = express()
 
 // express-session
 app.use(session({
-  secret: process.env.SECRET, maxAge: 60 * 60 * 1000, resave: false,
+  secret: process.env.SESSION_SECRET, maxAge: 60 * 60 * 1000, resave: false,
   saveUninitialized: true,
   cookie: { secure: false, maxAge: 60 * 30 * 1000 }
 }));
@@ -48,7 +48,7 @@ passport.deserializeUser(User.deserializeUser())
 // authentication
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.SESSION_SECRET
+  secretOrKey: process.env.SECRET
 }, async function ({ id }, cb) {
   try {
     const user = await User.findOne({ where: { id }, include: [Post, Note] })
