@@ -16,6 +16,8 @@ const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 
 const app = express()
 
+app.set('trust proxy', 1);
+
 // express-session
 app.use(session({
   secret: process.env.SECRET, maxAge: 60 * 60 * 1000, resave: false,
