@@ -32,5 +32,8 @@ function createPost() {
   document.getElementById('post').addEventListener('click', event => {
     event.preventDefault()
     createPost()
+    alert('Post Created!')
+    document.getElementById('title').textContent = '';
+    document.getElementById('body').textContent = '';
   })
 </script>
