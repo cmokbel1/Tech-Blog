@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const { redirect } = require('express/lib/response')
 
 //register account
-router.post('/users/register', (req, res) => {
+router.post('/register', (req, res) => {
   User.register(new User({ username: req.body.username }), req.body.password, err => {
     if (err) { console.log(err) }
     res.redirect('/login')
@@ -36,6 +36,6 @@ router.post('/login', (req, res) => {
 })
 
 //retrieve user profile
-router.get('/users/profile', passport.authenticate('jwt'), (req, res) => res.json(req.user))
+router.get('/profile', passport.authenticate('jwt'), (req, res) => res.json(req.user))
 
 module.exports = router 
