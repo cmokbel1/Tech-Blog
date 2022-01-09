@@ -15,7 +15,7 @@ const passport = require('passport')
 // })
 
 //post one post
-router.post('/posts', passport.authenticate('jwt'), async function(req, res)  {
+router.post('/', passport.authenticate('jwt'), async function(req, res)  {
   const post = await Post.create({
     body: req.body.body,
     title: req.body.title,
