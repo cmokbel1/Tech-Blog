@@ -110,7 +110,7 @@ router.get('/logout', async (req,res) => {
   if (req.session.loggedIn) {
     console.log('Getting out of here!')
     req.session.destroy(() => {
-      res.sender('logout')
+      res.render('logout')
     })
   } else {
     console.log('Not logged in')
