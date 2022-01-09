@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">User Login</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -19,6 +19,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="signup">Sign Up</button>
         <button type="button" id="login" class="btn btn-primary">Login</button>
       </div>
     </div>
@@ -35,6 +36,11 @@
         alert('Something Went Wrong. Please Try Again')
       }
     }
+
+    document.getElementById('signup').addEventListener('click', event => {
+      event.preventDefault()
+      location = '/register'
+    })
 
     document.getElementById('login').addEventListener('click', async function (event) {
       event.preventDefault()
