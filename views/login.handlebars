@@ -45,7 +45,7 @@
     document.getElementById('login').addEventListener('click', async function (event) {
       event.preventDefault()
     
-      const { username, token } = await loginUser({
+      const { username, token } = loginUser({
         username: document.getElementById('lUsername').value,
         password: document.getElementById('lPassword').value
       })
