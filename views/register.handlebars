@@ -10,3 +10,12 @@
 </div>
 <button type="submit" class="btn btn-primary">Register</button>
 </form>
+<h1>Already a member?</h1>
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="signin">Sign In</button>
+
+<script>
+      document.getElementById('signin').addEventListener('click', event => {
+          event.preventDefault()
+          location = '/login'
+        })
+</script>
