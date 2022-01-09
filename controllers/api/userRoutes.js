@@ -19,7 +19,7 @@ router.post('/login', (req, res) => {
     
     if (err) { console.log(err) }
 
-    res.session.save(() => {
+    req.session.save(() => {
       req.session.userId = user.id;
       req.session.username = username;
       req.session.loggedIn = true;
