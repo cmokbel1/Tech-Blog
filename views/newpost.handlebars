@@ -19,7 +19,7 @@ function createPost() {
       title: document.getElementById('title').value,
       body: document.getElementById('body').value
     }
-    axios.post('/api/posts', newPost, {
+    axios.post('/api/post', newPost, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
