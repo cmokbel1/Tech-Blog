@@ -59,8 +59,8 @@ router.get('/dashboard', async (req, res) => {
   data.posts = posts
   res.render('dashboard', data)
 })
-
-router.get('/newpost', helpers.isLoggedIn, (req, res) => {
+// helpers.isLoggedIn,
+router.get('/newpost',  (req, res) => {
   let data = {
     isLoggedIn: req.session.loggedIn ? true : false,
     username: req.session.loggedIn ? req.session.username : "ERROR"
