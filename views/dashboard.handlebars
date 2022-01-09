@@ -1,11 +1,15 @@
-<h1>Dashboard</h1>
-<p>Hello, {{username}} </p>
-<a href="/newpost">Blog About IT</a>
-<p>View your post history</p>
+{{#if isLoggedIn}}
+  <h1>Dashboard</h1>
+  <p>Hello, {{username}} </p>
+  <a href="/newpost">Blog About IT</a>
+  <p>View your post history</p>
 
-<h4>{{username}}'s Posts</h4>
-<ul>
-{{#each posts}}
-<li>{{title}}<a href="./editpost/{{posts.id}}">edit</a></li>
-{{/each}}
-</ul>
+  <h4>{{username}}'s Posts</h4>
+  <ul>
+    {{#each posts}}
+    <li>{{title}}<a href="./editpost/{{posts.id}}">edit</a></li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <h1>Please <a href="/login">sign in</a> to view your dashboard</h1>
+{{/if}}
