@@ -45,11 +45,11 @@
     document.getElementById('login').addEventListener('click', async function (event) {
       event.preventDefault()
     
-      const { username, token } = loginUser({
+      const data  = loginUser({
         username: document.getElementById('lUsername').value,
         password: document.getElementById('lPassword').value
       })
-      console.log(token)
+      console.log(data)
 
       if (token) {
         localStorage.setItem('username', username)
