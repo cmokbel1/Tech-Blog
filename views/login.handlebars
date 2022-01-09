@@ -49,7 +49,7 @@
         username: document.getElementById('lUsername').value,
         password: document.getElementById('lPassword').value
       })
-
+      console.log(data)
       if (data.token) {
         localStorage.setItem('username', data.username)
         localStorage.setItem('token', data.token)
