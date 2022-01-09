@@ -30,7 +30,7 @@
 <script>
   async function loginUser(user) {
       try {
-        const { data } = await axios.post('/api/user/login', user)
+        const  data  = await axios.post('/api/user/login', user)
         return data
       } catch (err) {
         alert('Something Went Wrong. Please Try Again')
