@@ -5,9 +5,9 @@
   <input type="text" name="title" id="title" value="{{post.title}}">
 </div>
 <div class="mb-3">
-  <textarea name="body" id="body"class="form-control">{{post.body}}<hr>{{updatedAt}}</textarea>
+  <textarea name="body" id="body"class="form-control">{{post.body}}{{updatedAt}}</textarea>
 </div>
-<button class="btn brn-primary" id="submit">Submit</button>
+<button class="btn brn-info" id="submit">Submit</button>
 <button class="btn btn-danger" id="delete">Delete</button>
 </form>
 
@@ -31,9 +31,9 @@
       console.log('edit success')
       location = `/post/{{post.id}}`;
     })
-    .catch(err) {
+    .catch(err => {
       console.log(err)
-    }
+    })
   })
 
   document.getElementById('delete').addEventListener('click', event => {
