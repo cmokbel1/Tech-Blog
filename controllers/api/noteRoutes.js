@@ -11,9 +11,9 @@ router.get('/notes', passport.authenticate('jwt'), async function (req, res) {
 //post a comment
 router.post('/:id', passport.authenticate('jwt'), async function (req, res)  {
   const note = await Note.create({
-    body: req.body.body,
+    body: req.body.data.body,
     pid: req.body.pid,
-    uid: req.body.uid,
+    uid: req.body.data.uid,
     username: req.session.username
   })
   res.json(note)
