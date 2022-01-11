@@ -100,7 +100,7 @@ router.get('/post/:id', async (req, res) => {
 
   let notes = await Note.findAll({
     raw: true,
-    where: { uid: req.params.id }
+    where: { pid: req.params.id }
   })
   console.log(notes)
   
