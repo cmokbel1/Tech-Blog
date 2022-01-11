@@ -98,10 +98,12 @@ router.get('/post/:id', async (req, res) => {
   })
   data.post = post
 
-  let notes = Note.findAll({
+  let notes = await Note.findAll({
     raw: true,
     where: { uid: req.params.id }
   })
+  console.log(notes)
+  
   data.notes = notes
   res.render('post', data)
 })
