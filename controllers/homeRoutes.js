@@ -70,7 +70,7 @@ router.get('/newpost',  (req, res) => {
 })
 
 
-router.get('/editpost/:id', helpers.isLoggedIn, async (req, res) => {
+router.get('/editpost/:id', async (req, res) => {
   let data = {
     isLoggedIn: req.session.loggedIn ? true : false,
     username: req.session.loggedIn ? req.session.username : "ERROR"
