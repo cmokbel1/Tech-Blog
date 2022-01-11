@@ -50,7 +50,7 @@
       'Authorization': `Bearer ${localStorage.token}`
     }
 
-    axios.post('/api/note/{{post.id}}', data, {heades: headers}).then(res => {
+    axios.post('/api/note/{{post.id}}', data, {headers: headers}).then(res => {
       location = '/post/{{post.id}}';
     }).catch(err) {
       console.log(err)
