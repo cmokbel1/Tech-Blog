@@ -1,6 +1,6 @@
 
   # Tech Blog
-  ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/cmokbel1/https://github.com/cmokbel1/Tech-Blog)
+  ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Tech-Blog)
   ![NPM](https://img.shields.io/npm/l/full)
 
 
