@@ -7,7 +7,7 @@
   <h5>{{username}}'s Posts</h5>
   <ul>
     {{#each posts}}
-    <li>{{title}} <a href="/editpost/{{post.id}}">edit</a></li>
+    <li>{{title}} <a href="/editpost/{{title.post.id}}">edit</a></li>
     {{/each}}
   </ul>
   {{else}}
