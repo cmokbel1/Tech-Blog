@@ -52,8 +52,8 @@
 
     axios.post('/api/note/{{post.id}}', data, {headers: headers}).then(res => {
       location = '/post/{{post.id}}';
-    }).catch(err) {
+    }).catch(err => {
       console.log(err)
-    }
+    })
   })
 </script>
