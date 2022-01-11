@@ -28,6 +28,7 @@
 
     axios.put('/api/post/{{post.id}}', data, {headers: headers})
     .then(res => {
+      console.log(res)
       console.log('edit success')
       location = `/post/{{post.id}}`;
     })
