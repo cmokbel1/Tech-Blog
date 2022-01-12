@@ -45,8 +45,8 @@
     let data = {
       body: document.getElementById('comment').value,
       pid: {{post.id}}
-      uid: {{user.id}}
-      username: {{note.User.username}}
+      uid: {{data.User.id}}
+      username: {{data.User.username}}
     }
     console.log(data)
 
@@ -55,7 +55,7 @@
     }
 
     axios.post('/api/note/{{post.id}}', data, {headers: headers}).then(res => {
-     ;
+     
     }).catch(err => {
       console.log(err)
     })
