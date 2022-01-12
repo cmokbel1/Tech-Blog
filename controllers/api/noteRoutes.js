@@ -6,6 +6,7 @@ const passport = require('passport')
 router.get('/notes', passport.authenticate('jwt'), async function (req, res) {
   const notes = await Note.findAll({ include: [User, Post] })
   res.json(notes)
+  console.log(notes)
 })
 
 //post a comment
