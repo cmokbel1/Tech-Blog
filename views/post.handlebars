@@ -31,7 +31,7 @@
   <li class="list-group-item">
     <div class="ms-2 me auto">
       <div class="fw">{{body}}</div>
-      Posted by {{post.User.username}} on {{createdAt}}
+      Posted by {{data.notes.username}} on {{createdAt}}
     </div>
   </li>
   {{/each}}
@@ -45,6 +45,7 @@
     let data = {
       body: document.getElementById('comment').value,
       pid: {{post.id}},
+      uid: {{}}
     }
     
 
