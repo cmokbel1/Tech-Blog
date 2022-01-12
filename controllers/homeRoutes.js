@@ -100,6 +100,7 @@ router.get('/post/:id', async (req, res) => {
 
   let notes = await Note.findAll({
     raw: true,
+    include: [{ model: User, attributes: ['username'] }],
     where: { pid: req.params.id }
   })
   console.log(notes)
